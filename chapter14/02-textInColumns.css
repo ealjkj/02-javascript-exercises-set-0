@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+}
+
+.buttons label {
+    width: 25%;
+}
+
+.column-cb {
+    display: none;
+}
+
+.btn {
+    height: 100px;
+    background-color: aquamarine;
+    border: 1px black solid;
+    cursor: pointer;
+}
+label:nth-of-type(1) .btn {
+    border-right: 1px solid transparent;
+}
+label:nth-of-type(2) .btn {
+    border-left: 1px solid transparent;
+}
+.buttons label:hover ~ label .btn {
+    background-color: aquamarine;
+}
+.buttons .first-label:hover + label .btn {
+    background-color: blueviolet;
+}
+.buttons {
+    display: flex;
+}
+#column-input-1:checked ~  .first-to-check .btn, 
+#column-input-2:checked ~  .first-to-check .btn,
+#column-input-3:checked ~  .second-to-check .btn,
+#column-input-4:checked ~  .third-to-check .btn,
+
+.buttons:hover .btn {
+    background-color: blueviolet;
+}
+
+
+
+/* Text-wrapper */
+#text-wrapper {
+    background-color: red;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+}
+#text-wrapper div {
+    height: 2000px;
+    /* flex-basis: 25% */
+}
+
+.column1 {
+    background-color: #ddd;
+    flex-basis: 50%
+}
+.column2 {
+    background-color: #ccc;
+    flex-grow: 1;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Only 3 times</title>
+
+    <style>
+        meter{
+            width: 10em;
+            height: 3em;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>You can only click the button 3 times. Use them wisely</h1>
+    <meter id="meter" value=0></meter>
+    <button id="limitedButton"> Click me!</button>
+    <script src="02-limitedClicks.js"></script>
+</body>
+</html>

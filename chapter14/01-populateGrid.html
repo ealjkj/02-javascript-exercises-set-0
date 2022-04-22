@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Populate Grid</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        #grid {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: red;
+        }
+
+        .square {
+            background-color: rgb(35, 111, 111);
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body> 
+    <div class="container">
+        <form>
+            <label for="gridWidth"> Select width "N"</label>
+            <input type="text" id="gridWidth" name="gridWidth" value=5>
+            <br>
+            <label for="gridHeight">Select height "M"</label>
+            <input type="text" id="gridHeight" value=3>
+            <br>
+            <input type="button" value="Populate" id="gridButton">
+        </form>
+    </div>
+
+    <div id="grid"></div>
+
+    <script src="01-populateGrid.js"></script>
+</body>
+</html>
