@@ -1,3 +1,4 @@
+'use-strict';
 function A() {
     console.log("This is A");
 }
@@ -9,7 +10,7 @@ function C() {
 }
 
 function run() {
-    counter = 0;
+    let counter = 0;
     setInterval(()=>{
         counter++
         if(counter % 2 === 0) A();

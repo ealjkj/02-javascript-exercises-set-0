@@ -26,7 +26,7 @@
     </style>
 </head>
 <body> 
-    <div class="container">
+    <div id="container">
         <form>
             <label for="gridWidth"> Select width "N"</label>
             <input type="text" id="gridWidth" name="gridWidth" value=5>
@@ -36,9 +36,8 @@
             <br>
             <input type="button" value="Populate" id="gridButton">
         </form>
+        <div id="grid"></div>
     </div>
-
-    <div id="grid"></div>
 
     <script src="01-populateGrid.js"></script>
 </body>

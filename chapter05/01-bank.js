@@ -1,21 +1,49 @@
-const BANK = {}
+class Bank  {
+    #data;
+    constructor () {
+        this.#data = {};
+    }
+    createAccount(accountNumber) {
+        if(accountNumber in this.#data) throw Error('This account number has already been taken');
+        this.#data[accountNumber] = 0;
+    }
+
+    deposit(moneyToDeposit, accountNumber) {
+        if(!accountNumber in this.#data) throw Error('The accont does not exist');
+        this.#data[accountNumber] += moneyToDeposit;
+    }
+
+    retrieve(moneyToRetrieve, accountNumber) {
+        if(this.#data[accountNumber] < moneyToRetrieve) throw Error('Balance in the bank is not enough');
+        this.#data[accountNumber] -= moneyToRetrieve;
+    }
+
+    getBalance(accountNumber) {
+        return this.#data[accountNumber];
+    }
+
+    printData(){
+        console.log(this.#data);
+    }
+}
 
 class Client {
     #money;
     #accountNumber;
-    constructor(name, walletMoney, accountNumber, bankMoney = 1000){
-        //input validation
-        if(typeof walletMoney !== 'number' || walletMoney < 0) throw Error('Select a valid number for the wallet');
-        if(typeof bankMoney !== 'number' || bankMoney < 0) throw Error('Select a valid number for the bank');
-        
-        //non-repeated account validation
-        if(accountNumber in BANK) throw Error('This account number has been taken');
-        
+    #bank;
+    constructor(name, walletMoney, bank, accountNumber){
+        //input validation (Non-negative Number)
+        if(typeof walletMoney !== 'number' || walletMoney <= 0) throw Error('Select a valid number for the wallet');
 
         this.name = name;
         this.#money = walletMoney;
-        this.#accountNumber = accountNumber;
-        BANK[accountNumber] = bankMoney;
+        this.openBankAccount(bank, accountNumber); 
+    }
+    
+    openBankAccount(bank, accountNumber) {
+        this.#bank = bank;
+        bank.createAccount(accountNumber);
+        this.#accountNumber = accountNumber
     }
 
     deposit(moneyToDeposit, accountNumber) {
@@ -23,80 +51,81 @@ class Client {
         if(typeof moneyToDeposit !== 'number' || moneyToDeposit < 0) throw Error('select a valid number');
 
         //balance and account validation:
-        if(!accountNumber in BANK) throw Error('The accont does not exist');
-        else if(moneyToDeposit > this.#money) throw Error(`Balance on ${this.name} wallet is not enough`);
-
+        // console.log(this.#money, moneyToDeposit);
+        if(moneyToDeposit > this.#money) throw Error(`Balance on ${this.name} wallet is not enough`);
         else {
-            BANK[accountNumber] += moneyToDeposit;
+            this.#bank.deposit(moneyToDeposit, accountNumber);
             this.#money -= moneyToDeposit;
-        } 
+        }
     }
 
     retrieve(moneyToRetrieve) {
         //input validation:
         if(typeof moneyToRetrieve !== 'number' || moneyToRetrieve < 0) throw Error('select a valid number');
 
-        // balance validation
-        if(BANK[this.#accountNumber] < moneyToRetrieve) throw Error('Balance in the bank is not enough');
-
-        else {
-            BANK[this.#accountNumber] -= moneyToRetrieve;
-            this.#money += moneyToRetrieve;
-        }
+        this.#bank.retrieve(moneyToRetrieve, this.#accountNumber);
+        this.#money += moneyToRetrieve;        
     }  
     
     // You can use this method for debugging
-    printInfo() {
-        console.log(`${this.name} with account number of ${this.#accountNumber} has ${this.#money} dollars in his wallet. And ${BANK[this.#accountNumber]} on the bank`);
+    printBalance() {
+        console.log(`${this.name} with account number of ${this.#accountNumber} has ${this.#money} dollars in his wallet. And ${this.#bank.getBalance(this.#accountNumber)} on the bank`);
     }
 
-    get balance(){
-        return BANK[this.#accountNumber];
+    get balance() {
+        return this.#bank.getBalance(this.#accountNumber);
     }
 }
 
 
 // Tests
-
-
 // Create Persons
 
-mario = new Client('Mario', 400, 123123123);
-luigi = new Client('Luigi', 200, 321321321, 1500);
-wario = new Client('Wario', 300, 567567567, 200);
-waluigi = new Client('Waluigi', 700, 987987987, 500);
+let bank1 = new Bank();
+
+let mario = new Client('Mario', 1400, bank1, 123123123);
+mario.deposit(1000, 123123123);
+
+let luigi = new Client('Luigi', 1700, bank1, 321321321);
+luigi.deposit(1500, 321321321);
+
+let wario = new Client('Wario', 500, bank1, 567567567);
+wario.deposit(200, 567567567);
+
+let waluigi = new Client('Waluigi', 1200, bank1, 987987987);
+waluigi.deposit(500, 987987987);
 
 
 // //Deposit test
-// mario.printInfo();
-// luigi.printInfo();
+// mario.printBalance();
+// luigi.printBalance();
 // mario.deposit(100, 321321321);
 // console.log('\nmario deposited to luigi\n');
-// mario.printInfo();
-// luigi.printInfo();
+// mario.printBalance();
+// luigi.printBalance();
 //----------------------------------------------------------
 
 // // Not enough money to deposit test
-// mario.printInfo();
-// luigi.printInfo();
+// mario.printBalance();
+// luigi.printBalance();
 // mario.deposit(1200, 321321321);
 // console.log('\nmario tries to deposit a lot of money to luigi\n');
-// mario.printInfo();
-// luigi.printInfo();
-// // ----------------------------------------------------------
+// mario.printBalance();
+// luigi.printBalance();
+// ----------------------------------------------------------
 
-// // Retrieve Test
-// wario.printInfo();
+// Retrieve Test
+// wario.printBalance();
 // wario.retrieve(200);
 // console.log('\nWario retrieves money\n');
-// wario.printInfo();
+// wario.printBalance();
 // //----------------------------------------------------------
 
-// // Not enough money to retrieve test
-// wario.printInfo();
+// Not enough money to retrieve test
+// wario.printBalance();
 // wario.retrieve(10000);
 // console.log('\nWario retrieves money\n');
-// wario.printInfo();
+// wario.printBalance();
 // //----------------------------------------------------------
 
 // // view current valance test
@@ -106,3 +135,7 @@ waluigi = new Client('Waluigi', 700, 987987987, 500);
 // // private information test
 // console.log(mario.#accountNumber);
 // //-----
+
+
+
+

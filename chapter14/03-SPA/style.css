@@ -3,8 +3,30 @@
     margin: 0;
 }
 
+body {
+    counter-reset: section;
+}
+
 section {
     display: flex;
+    align-items: center;
+    counter-increment: section;
+    position: relative;
+}
+
+section::before{
+    content: counter(section);
+    position: absolute;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    top: 0.5rem;
+    left: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(183, 148, 215);
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 

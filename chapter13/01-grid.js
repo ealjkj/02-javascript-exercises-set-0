@@ -1,20 +1,25 @@
-let gridDimention = 5; //5x5 grid;
-let containerElement = document.getElementById("container");
+'use-strict';
+const gridDimention = 5; //5x5 grid;
+const containerElement = document.getElementById("container");
+const fragment = new DocumentFragment();
 
 // Appending grid Elements
 for(let i = 0; i< gridDimention*gridDimention; i++){
     // Create Element
     let element = document.createElement('div');
-    containerElement.appendChild(element);
-
+    fragment.appendChild(element);
+    // containerElement.appendChild(element);
+    
     element.innerHTML = `<p> ${i} </p>`;
     element.classList.add("square");
     element.style.width = `${100/gridDimention}\%`;
-    element.style.height = `${element.clientWidth}px`;
+
+    
 }
 
+containerElement.appendChild(fragment);
 
 containerElement.addEventListener("click", function alertNumber(e){
-    square = e.target.closest(".square");
+    let square = e.target.closest(".square");
     alert(square.textContent);
 });

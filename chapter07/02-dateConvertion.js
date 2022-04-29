@@ -1,40 +1,16 @@
-function dateTransform(dateString) {
-    //Should be an input of the form "Language-Region: Date"
-    //Get language
-    let language = dateString.match(/(\w+)-/)[1]
-    
-    if(language.toUpperCase() === "ENGLISH") {
-        let engRegexp = /\w+-\w+:\s+(\d{1,2})\/(\d{1,2})\/(\d{4})/i;
-        let month = dateString.match(/(\d{1,2})\/\d{1,2}\/\d{4}/)[1];
-        let day = dateString.match(/(\d{1,2})\/\d{4}/)[1];
-        let holiday = '';
-
-        //fill with zeros at the left
-        month = ('00' + month).slice(-2);
-        day = ('00' + day).slice(-2);
-        let monthDay = `${month}/${day}`;
-        if(monthDay in japanHolidays)  holiday = ' (' +japanHolidays[monthDay] + ')';
-
-        let jpnNewString = dateString.replace(engRegexp, 'Japanese-JN: $3/$1/$2');
-        return jpnNewString + holiday;
-    } else if (language.toUpperCase() === "JAPANESE") {
-        let jpnRegexp = /\w+-\w+:\s+(\d{4})\/(\d{1,2})\/(\d{1,2})/i;
-        let month = dateString.match(/\d{4}\/(\d{1,2})/)[1];
-        let day = dateString.match(/\d{4}\/\d{1,2}\/(\d{1,2})/)[1];
-        let holiday = '';
-
-        //fill with zeros at the left
-        month = ('00' + month).slice(-2);
-        day = ('00' + day).slice(-2);
-        let monthDay = `${month}/${day}`;
-        if(monthDay in usaHolidays)  holiday = ' (' +usaHolidays[monthDay] + ')';
-
-        let engNewString =  dateString.replace(jpnRegexp, 'English-US: $2/$3/$1');
-        return engNewString + holiday;
-    }    
+function usToJp(string) {
+    let engRegexp = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/i
+    let engDay = ('00' + string.match(engRegexp)[1]).slice(-2) + '/' + ('00' + string.match(engRegexp)[2]).slice(-2);
+    return string.replace(engRegexp, '$3/$1/$2') + ` (${japanHolidays[engDay]})`;
 }
 
-japanHolidays = {
+function jpToUs(string) {
+    let jpnRegexp = /(\d{4})\/(\d{1,2})\/(\d{1,2})/i
+    let engDay = ('00' + string.match(jpnRegexp)[2]).slice(-2) + '/' + ('00' + string.match(jpnRegexp)[3]).slice(-2);
+    return string.replace(jpnRegexp, '$2/$3/$1') + ` (${usaHolidays[engDay]})`;
+}
+
+const japanHolidays = {
     '01/01': "New Year's Day",
     '02/11': "Foundation Day",
     '03/21': "Vernal Equinox Day",
@@ -49,7 +25,7 @@ japanHolidays = {
     '12/23': "Culutre Day",
 }
 
-usaHolidays = {
+const usaHolidays = {
     '01/17': "Martin Lugher King, Jr.Day",
     '02/21': "George Washington's Birthday",
     '05/30': "Memorial Day",
@@ -63,5 +39,8 @@ usaHolidays = {
     '12/31': "New Year's Day",   
 }
 
-console.log(dateTransform("English-US: 08/11/2014"));
-console.log(dateTransform("Japanese-JP: 2016/07/4"));
+// console.log(dateTransform("08/11/2014"));
+console.log(usToJp("08/11/2014"));
+
+// console.log(dateTransform("2016/07/4"));
+console.log(jpToUs("2016/07/4"));

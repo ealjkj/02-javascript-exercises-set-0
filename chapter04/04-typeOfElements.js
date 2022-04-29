@@ -1,5 +1,5 @@
 function dataType(...args) {
-    console.log(args.map(value => extendedTypeOf(value)).join(", "));
+    console.log(args.map(extendedTypeOf).join(", "));
 }
 
 function extendedTypeOf(value) {

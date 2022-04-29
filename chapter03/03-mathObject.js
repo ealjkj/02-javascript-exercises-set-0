@@ -1,4 +1,5 @@
-myMath = {
+'use strict';
+let myMath = {
     add: function(...args) {
         return args.reduce((a,b)=> a+b)
     },
@@ -8,14 +9,13 @@ myMath = {
     },
 
     fact: function(n) {
-       ans = 1;
-       for(let i = 1; i <= n; i++){
+        let ans = 1;
+        for(let i = 1; i <= n; i++){
            ans*=i;
-       } 
+        } 
        return ans;
     }
 }
-
 
 //Tests
 var a = myMath.add(1,2,3);

@@ -1,3 +1,4 @@
+'use strict';
 function fibonacci(n) {
     let memo = {};
     return function recFib(n){
@@ -12,14 +13,8 @@ function fibonacci(n) {
     }(n);
 }
 
-// function expensiveFibonacci(n) {
-//     console.log('Hi', n);
-//     if(n===1 || n===2) return 1;
-//     else return expensiveFibonacci(n-1) + expensiveFibonacci(n-2);
-// }
-
 
 //Tests
-var n = fibonacci(4);
-var m = fibonacci(9);
+const n = fibonacci(4);
+const m = fibonacci(9);
 console.log(n,m);

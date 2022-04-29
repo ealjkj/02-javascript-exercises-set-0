@@ -1,22 +1,30 @@
-let heightInputElement = document.getElementById('gridHeight');
-let widthInputElement = document.getElementById('gridWidth');
-let gridContainerElement = document.getElementById('grid')
-let btn = document.getElementById('gridButton');
+const heightInputElement = document.getElementById('gridHeight');
+const widthInputElement = document.getElementById('gridWidth');
+const containerElement = document.getElementById('container');
+const btn = document.getElementById('gridButton');
+
+let gridContainerElement = document.getElementById('grid');
 
 btn.addEventListener('click', function populateGrid(e) {
-    while (gridContainerElement.lastChild) {
-        gridContainerElement.removeChild(gridContainerElement.lastChild);
-    }
+    let fragment = new DocumentFragment();
+    containerElement.removeChild(gridContainerElement);
 
-    gridHeight = Number(heightInputElement.value);
-    gridWidth = Number(widthInputElement.value);
-    
+    gridContainerElement = document.createElement('div');
+    gridContainerElement.setAttribute('id', 'grid');
+
+    let gridHeight = Number(heightInputElement.value);
+    let gridWidth = Number(widthInputElement.value);
+
+    // Making a square to clone;
+    let square = document.createElement('div');
+    square.classList.add('square');
+    square.style.width = `${100/gridWidth}\%`;
+    square.style.paddingBottom = `${100/gridWidth}\%`;
+
     for(let i=0; i<gridHeight*gridWidth; i++){
-        let element = document.createElement('div');
+        let element = square.cloneNode(true);
         gridContainerElement.appendChild(element);
-
-        element.classList.add('square');
-        element.style.width = `${100/gridWidth}\%`;
-        element.style.paddingBottom = `${100/gridWidth}\%`;
     }
+    fragment.appendChild(gridContainerElement);
+    containerElement.appendChild(fragment);
 })

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+        }
+        #container {
+            column-count: 3;
+            text-align: justify;
+        }
+        .main-title {
+            padding: 1em;
+            text-align: center;
+        }
+        #layout-selection {
+            display: flex;
+            list-style-type: none;
+            margin-bottom: 1em;
+            justify-content: center;
+        }
+        #layout-selection li {
+            margin-right: 2em;
+        }
+
+        p {
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="main-title"> Select Layout</h2>
+    <ul id="layout-selection">
+        <li> <button data-columns="2"> 2 columns</button></li>
+        <li> <button data-columns="3"> 3 columns</button></li>
+        <li> <button data-columns="4"> 4 columns</button></li>
+    </ul>
+    <div id="container">
+        <p>This is a long text Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum in aspernatur odit molestiae quae, ducimus ullam repellat. Fugiat, eaque. Sint neque est adipisci suscipit animi asperiores quia voluptate exercitationem fuga soluta unde dolorum, maiores facere, inventore, vero commodi molestiae culpa! Dolores praesentium fuga incidunt. Iure dolore eos officia veritatis esse exercitationem nihil at quis temporibus, non repudiandae quas vel sapiente quo quos expedita quisquam praesentium perspiciatis consequuntur. Exercitationem, harum! Fugiat consectetur quos quisquam molestias quas explicabo atque totam, magnam itaque aut maiores labore veniam vel laudantium necessitatibus rem nobis ipsa aperiam. </p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates similique porro soluta, optio error, corrupti reiciendis expedita facere suscipit, corporis nam rerum deleniti exercitationem? Excepturi nulla id, natus quibusdam illo, ut nisi cumque at officia magnam maiores rem doloremque itaque iusto eveniet beatae enim illum quia reprehenderit dolor nobis repudiandae odit ex. Voluptatum perferendis, doloremque eaque animi itaque blanditiis ratione quam nobis earum. Optio blanditiis, totam consectetur alias quos excepturi dolore numquam dolorum impedit repudiandae voluptatem qui, harum ad voluptates et quo quia pariatur aliquid aperiam? Exercitationem rem eum corporis molestias! Nulla adipisci ipsam eligendi officia earum maiores voluptas, est aliquam expedita enim, laborum obcaecati omnis eius, inventore atque. Blanditiis iste sequi tempora consequatur delectus neque iure asperiores non fugiat aut, enim quam, autem ab quidem! Recusandae esse aut ut provident labore, reiciendis, modi explicabo magnam minus perferendis laudantium illum culpa! Odit quis, maiores nam quasi culpa possimus accusamus quam labore dolore voluptatem cumque quos magni ad nobis unde cum totam ipsam veritatis, dolores est ipsa sit quibusdam consequatur! Aperiam ut numquam rem! Expedita, magnam. Vel eaque enim adipisci molestiae perspiciatis accusamus corporis distinctio? Perspiciatis doloribus debitis eaque nesciunt minus eos impedit velit dolor, perferendis harum, veniam facilis cum eveniet.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium porro vero esse culpa, obcaecati corrupti repellendus sit a qui, amet similique sequi. Odit, amet iure repudiandae minus asperiores quia sunt sit recusandae aliquam quas ipsa reprehenderit consequuntur praesentium. Illum, facilis?</p>
+    </div>
+    <script src="02-MultipleColumns.js"></script>
+</body>
+</html>
