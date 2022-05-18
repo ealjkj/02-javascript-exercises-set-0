@@ -1,12 +1,12 @@
 function usToJp(string) {
-    let engRegexp = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/i
-    let engDay = ('00' + string.match(engRegexp)[1]).slice(-2) + '/' + ('00' + string.match(engRegexp)[2]).slice(-2);
+    const engRegexp = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/i
+    const engDay = string.match(engRegexp)[1].padStart(2, '0') + '/' + string.match(engRegexp)[2].padStart(2, '0');
     return string.replace(engRegexp, '$3/$1/$2') + ` (${japanHolidays[engDay]})`;
 }
 
 function jpToUs(string) {
-    let jpnRegexp = /(\d{4})\/(\d{1,2})\/(\d{1,2})/i
-    let engDay = ('00' + string.match(jpnRegexp)[2]).slice(-2) + '/' + ('00' + string.match(jpnRegexp)[3]).slice(-2);
+    const jpnRegexp = /(\d{4})\/(\d{1,2})\/(\d{1,2})/i
+    const engDay = string.match(jpnRegexp)[2].padStart(2, '0') + '/' + string.match(jpnRegexp)[3].padStart(2, '0');
     return string.replace(jpnRegexp, '$2/$3/$1') + ` (${usaHolidays[engDay]})`;
 }
 

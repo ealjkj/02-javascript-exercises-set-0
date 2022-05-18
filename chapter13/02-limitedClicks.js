@@ -10,11 +10,11 @@ function limitedClicking(maxClicks) {
     function limitedN(e) {
         document.body.style.backgroundColor = randomColor();
         counter++ 
-        meter.setAttribute("value", `${counter/maxClicks}`);
+        meter.setAttribute("value", `${counter}`);
         if(counter >= maxClicks){
             btn.removeEventListener('click', limitedN);
         }
     }
     return limitedN;
 }
-btn.addEventListener('click', limitedClicking(3))
+btn.addEventListener('click', limitedClicking(3));

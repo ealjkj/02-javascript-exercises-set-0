@@ -1,9 +1,16 @@
 'use strict';
 
+// function dataParse(stringWithCode) {
+//     let obj;
+//     eval('obj = ' + stringWithCode);
+//     return obj;
+// }
+
+// function dataParse(stringWithCode) {
+//     return eval(`(${stringWithCode})`);
+// }
 function dataParse(stringWithCode) {
-    let obj;
-    eval('obj = ' + stringWithCode);
-    return obj;
+    return (new Function(`return ${stringWithCode}`))()
 }
 
 

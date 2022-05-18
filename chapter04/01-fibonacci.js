@@ -1,6 +1,6 @@
 'use strict';
 function fibonacci(n) {
-    let memo = {};
+    const memo = {};
     return function recFib(n){
         if(n == 1 || n==2) return 1;
         else if(n in memo) {
